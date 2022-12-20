@@ -14,8 +14,8 @@ function Tip() {
         });
     };
 
-    const final = (values.percentage * values.number) / 100 * values.bill;
-
+    const tip = (values.bill * values.percentage) / 100;
+    const tipPerson = tip / values.number;
 
     return (
         <>
@@ -25,8 +25,8 @@ function Tip() {
             <input min={0} value={values.percentage} onChange={handleChange} name='percentage' type="number" />
             <label htmlFor="number">Number of people</label>
             <input min={0} value={values.number} onChange={handleChange} name='number' type="number" />
-            <p>Total Tip:{final ? '$' + final.toFixed(2) : '-'}  </p>
-            <p>Tip Per Person: {final ? '$' + (final / values.number).toFixed(2) : '-'}</p>
+            <p>Total Tip:{tip && values.number > 0 ? '$' + tip.toFixed(2) : '-'}  </p>
+            <p>Tip Per Person: {tipPerson && values.number > 0 ? '$' + tipPerson.toFixed(2) : '-'}</p>
         </>
     )
 }
